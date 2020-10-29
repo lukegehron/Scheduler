@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shower Scheduler</title>
+    <style>
+        body {
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.25;
+}
+
+table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+table caption {
+  font-size: 1.5em;
+  margin: .5em 0 .75em;
+}
+
+table tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  /* padding: .35em; */
+}
+
+table th,
+table td {
+  /* padding: .625em; */
+  text-align: center;
+}
+
+table th {
+  font-size: .85em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 600px) {
+  table {
+    border: 0;
+  }
+
+  table caption {
+    font-size: 1.3em;
+  }
+  
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+  table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+  
+  table td {
+    border-bottom: 1px solid #ddd;
+    
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+  
+  table td::before {
+    /*
+    * aria-label has no advantage, it won't be read inside a table
+    content: attr(aria-label);
+    */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  table td:last-child {
+    border-bottom: 0;
+  }
+}
+
+input{
+    background: #f8f8f8;
+    border: none;
+    border-bottom: dashed 1px black;
+    text-align: center;
+}
+
+button{
+    background: #f8f8f8;
+    border: none;
+    cursor: pointer;
+}
+    </style>
+</head>
+<body>
+    <div id="app">
+        <form>
+    <table>
+        <caption>Shower Scheduler</caption>
+        <thead>
+          <tr style="font-size: 1.8em; font-weight: 700; height:2em">
+            <th scope="col"></th>
+            <th scope="col">Today</th>
+            <th scope="col"></th>
+            <th scope="col" width="2hw"></th>
+            <th scope="col"></th>
+            <th scope="col">Tomorrow</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="font-size: 1.3em; font-weight: 700; height:1.5em">
+            <th data-label="Due Date">Time</th>
+            <th data-label="Account">M Shower</th>
+            <th data-label="Amount">W Shower</th>
+            <th></td>
+            <th data-label="Due Date">Time</th>
+            <th data-label="Account">M Shower</th>
+            <th data-label="Amount">W Shower</th>
+          </tr>
+              <tr v-for="table in tables">
+
+                <td data-label="Time Today"><strong>{{table.time}}</strong></td>
+                <td data-label="Men's">
+                   <input type="text" style="width: 60%; display: inline-block;" v-model="table.todayShowerM"/>
+                </td>
+                <td data-label="Women's"><span id=Today500MText style="display: none;">Sean R</span>
+                    <input type="text" style="width: 60%; display: inline-block;" v-model="table.todayShowerW"/>   
+                </td>
+                <td></td>
+                <td data-label="Time Tomorrow"><strong>{{table.time}}</strong></td>
+                <td data-label="Men's">
+                    <input type="text" style="width: 60%; display: inline-block;" v-model="table.tomorrowShowerM"/>
+                </td>
+                <td data-label="Women's"><span id=Today500MText style="display: none;">Sean R</span>
+                    <input type="text" style="width: 60%; display: inline-block;" v-model="table.tomorrowShowerW"/>   
+                </td>
+              </tr>
+
+        </tbody>
+      </table>
+      <input type="submit" value="Submit">
+    </form>
+
+      <h3 class="vue-title">Simple</h3>
+
+
+
+</div>
+
+      <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+
+      <script>
+
+       var app =  new Vue({
+          el: "#app",
+          data: {
+            columns: [
+              'id',
+              'name',
+              'email'
+              ],
+              tables:[
+                {
+                    time:"7.00",
+                    todayShowerM:"Sean R",
+                    todayShowerW:"",
+                    tomorrowShowerM:"",
+                    tomorrowShowerW:""
+                },
+                {
+                    time:"7.30",
+                    todayShowerM:"",
+                    todayShowerW:"",
+                    tomorrowShowerM:"Zink",
+                    tomorrowShowerW:""
+                },
+                {
+                    time:"8.00",
+                    todayShowerM:"",
+                    todayShowerW:"",
+                    tomorrowShowerM:"",
+                    tomorrowShowerW:""
+                },
+                {
+                    time:"8.30",
+                    todayShowerM:"",
+                    todayShowerW:"",
+                    tomorrowShowerM:"",
+                    tomorrowShowerW:""
+                },
+                {
+                    time:"9.00",
+                    todayShowerM:"",
+                    todayShowerW:"",
+                    tomorrowShowerM:"",
+                    tomorrowShowerW:""
+                },
+                {
+                    time:"9.30",
+                    todayShowerM:"",
+                    todayShowerW:"",
+                    tomorrowShowerM:"",
+                    tomorrowShowerW:""
+                },
+                {
+                    time:"10.00",
+                    todayShowerM:"",
+                    todayShowerW:"",
+                    tomorrowShowerM:"",
+                    tomorrowShowerW:""
+                },
+                {
+                    time:"10.30",
+                    todayShowerM:"",
+                    todayShowerW:"",
+                    tomorrowShowerM:"",
+                    tomorrowShowerW:""
+                },
+                {
+                    time:"11.00",
+                    todayShowerM:"",
+                    todayShowerW:"",
+                    tomorrowShowerM:"",
+                    tomorrowShowerW:""
+                },
+                {
+                    time:"11.30",
+                    todayShowerM:"",
+                    todayShowerW:"",
+                    tomorrowShowerM:"",
+                    tomorrowShowerW:""
+                },
+                {
+                    time:"12.00",
+                    todayShowerM:"",
+                    todayShowerW:"",
+                    tomorrowShowerM:"",
+                    tomorrowShowerW:""
+                },
+                {
+                    time:"12.30",
+                    todayShowerM:"",
+                    todayShowerW:"",
+                    tomorrowShowerM:"",
+                    tomorrowShowerW:""
+                },
+                {
+                    time:"1.00",
+                    todayShowerM:"",
+                    todayShowerW:"",
+                    tomorrowShowerM:"",
+                    tomorrowShowerW:""
+                },
+                {
+                    time:"1.30",
+                    todayShowerM:"",
+                    todayShowerW:"",
+                    tomorrowShowerM:"",
+                    tomorrowShowerW:""
+                },
+                {
+                    time:"2.00",
+                    todayShowerM:"",
+                    todayShowerW:"",
+                    tomorrowShowerM:"",
+                    tomorrowShowerW:""
+                },
+                {
+                    time:"2.30",
+                    todayShowerM:"",
+                    todayShowerW:"",
+                    tomorrowShowerM:"",
+                    tomorrowShowerW:""
+                },
+                {
+                    time:"3.00",
+                    todayShowerM:"",
+                    todayShowerW:"",
+                    tomorrowShowerM:"",
+                    tomorrowShowerW:""
+                },
+                {
+                    time:"3.30",
+                    todayShowerM:"",
+                    todayShowerW:"",
+                    tomorrowShowerM:"",
+                    tomorrowShowerW:""
+                },
+                {
+                    time:"4.00",
+                    todayShowerM:"",
+                    todayShowerW:"",
+                    tomorrowShowerM:"",
+                    tomorrowShowerW:""
+                },
+                {
+                    time:"4.30",
+                    todayShowerM:"",
+                    todayShowerW:"",
+                    tomorrowShowerM:"",
+                    tomorrowShowerW:""
+                },
+                {
+                    time:"5.00",
+                    todayShowerM:"",
+                    todayShowerW:"",
+                    tomorrowShowerM:"",
+                    tomorrowShowerW:""
+                },
+                {
+                    time:"5.30",
+                    todayShowerM:"",
+                    todayShowerW:"",
+                    tomorrowShowerM:"",
+                    tomorrowShowerW:""
+                },
+                {
+                    time:"6.00",
+                    todayShowerM:"",
+                    todayShowerW:"",
+                    tomorrowShowerM:"",
+                    tomorrowShowerW:""
+                },
+                {
+                    time:"6.30",
+                    todayShowerM:"",
+                    todayShowerW:"",
+                    tomorrowShowerM:"",
+                    tomorrowShowerW:""
+                },
+              ],
+            data: getData(),
+            options: {
+              headings: {
+                id: 'id',
+                name: 'name',
+                email: 'email'
+              },
+              sortable: [
+                'id', 'name'
+                ],
+              texts: {
+                filterPlaceholder: 'filter'
+              }
+            }
+          }
+        });
+        
+        function getData() {
+          const arr = []
+          for (i = 0; i < 20; i++) {
+            arr.push({
+              'id': i,
+              'name': `sample${i}`,
+              'email': `sample${i}@example.com`,
+              'group_name': 'Personnel'
+            });
+          }
+          return arr;
+        }</script>
+    
+</body>
+</html>
